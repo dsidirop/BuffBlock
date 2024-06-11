@@ -158,65 +158,67 @@ function IsShieldEquipped()
 end
 
 function Kill_Buffs()
-	local i = 0;
-	while not (GetPlayerBuff(i, "HELPFUL") == -1) do
-		local buffIndex, untilCancelled = GetPlayerBuff(i, "HELPFUL")
-		local texture = GetPlayerBuffTexture(buffIndex);
-		
-		--DEFAULT_CHAT_FRAME:AddMessage("DEBUG: "..texture, 1, 1, 0.5);
-		
-		if BUFF_CONFIG[BB_PlayerName].BATTLESHOUT then
-			if (string.find(texture,"BattleShout")) then
-				CancelPlayerBuff(buffIndex);
-				DEFAULT_CHAT_FRAME:AddMessage("Blocked "..BuffBlockMenuStrings[00], 1, 1, 0.5);
-			end
-		end
-		if BUFF_CONFIG[BB_PlayerName].SALVATION then
-			if (string.lower(UnitClass("player")) ~= "warrior" or (IsShieldEquipped() and GetShapeshiftFormInfo(2))) then
-				if (string.find(texture,"SealOfSalvation")) then
-					CancelPlayerBuff(buffIndex);
-					DEFAULT_CHAT_FRAME:AddMessage("Blocked "..BuffBlockMenuStrings[01], 1, 1, 0.5);
-				end
-			end
-		end
-		if BUFF_CONFIG[BB_PlayerName].GREATERSALVATION then
-			if (string.lower(UnitClass("player")) ~= "warrior" or (IsShieldEquipped() and GetShapeshiftFormInfo(2))) then
-				if (string.find(texture,"GreaterBlessingofSalvation")) then
-					CancelPlayerBuff(buffIndex);
-					DEFAULT_CHAT_FRAME:AddMessage("Blocked "..BuffBlockMenuStrings[02], 1, 1, 0.5);
-				end
-			end
-		end
-		if BUFF_CONFIG[BB_PlayerName].DIVINESPIRIT then
-			if (string.find(texture,"DivineSpirit")) then
-				CancelPlayerBuff(buffIndex);
-				DEFAULT_CHAT_FRAME:AddMessage("Blocked "..BuffBlockMenuStrings[03], 1, 1, 0.5);
-			end
-		end
-		if BUFF_CONFIG[BB_PlayerName].PRAYEROFSPIRIT then
-			if (string.find(texture,"PrayerofSpirit")) then
-				CancelPlayerBuff(buffIndex);
-				DEFAULT_CHAT_FRAME:AddMessage("Blocked "..BuffBlockMenuStrings[04], 1, 1, 0.5);
-			end
-		end
-		if BUFF_CONFIG[BB_PlayerName].ARCANEINTELLECT then
-			if (string.find(texture,"MagicalSentry")) then
-				CancelPlayerBuff(buffIndex);
-				DEFAULT_CHAT_FRAME:AddMessage("Blocked "..BuffBlockMenuStrings[05], 1, 1, 0.5);
-			end
-		end
-		if BUFF_CONFIG[BB_PlayerName].ARCANEBRILLIANCE then
-			if (string.find(texture,"ArcaneIntellect")) then
-				CancelPlayerBuff(buffIndex);
-				DEFAULT_CHAT_FRAME:AddMessage("Blocked "..BuffBlockMenuStrings[06], 1, 1, 0.5);
-			end
-		end
-		if BUFF_CONFIG[BB_PlayerName].BLESSINGOFPROTECTION then
-			if (string.find(texture,"SealOfProtection")) then
-				CancelPlayerBuff(buffIndex);
-				DEFAULT_CHAT_FRAME:AddMessage("Blocked "..BuffBlockMenuStrings[07], 1, 1, 0.5);
-			end
-		end
-		i = i + 1;
-	end
+    local i = 0;
+    while not (GetPlayerBuff(i, "HELPFUL") == -1) do
+        local buffIndex, untilCancelled = GetPlayerBuff(i, "HELPFUL")
+        local texture = GetPlayerBuffTexture(buffIndex);
+
+        --DEFAULT_CHAT_FRAME:AddMessage("DEBUG: "..texture, 1, 1, 0.5);
+        if texture then
+            if BUFF_CONFIG[BB_PlayerName].BATTLESHOUT then
+                if (string.find(texture, "BattleShout")) then
+                    CancelPlayerBuff(buffIndex);
+                    DEFAULT_CHAT_FRAME:AddMessage("Blocked " .. BuffBlockMenuStrings[00], 1, 1, 0.5);
+                end
+            end
+            if BUFF_CONFIG[BB_PlayerName].SALVATION then
+                if (string.lower(UnitClass("player")) ~= "warrior" or (IsShieldEquipped() and GetShapeshiftFormInfo(2))) then
+                    if (string.find(texture, "SealOfSalvation")) then
+                        CancelPlayerBuff(buffIndex);
+                        DEFAULT_CHAT_FRAME:AddMessage("Blocked " .. BuffBlockMenuStrings[01], 1, 1, 0.5);
+                    end
+                end
+            end
+            if BUFF_CONFIG[BB_PlayerName].GREATERSALVATION then
+                if (string.lower(UnitClass("player")) ~= "warrior" or (IsShieldEquipped() and GetShapeshiftFormInfo(2))) then
+                    if (string.find(texture, "GreaterBlessingofSalvation")) then
+                        CancelPlayerBuff(buffIndex);
+                        DEFAULT_CHAT_FRAME:AddMessage("Blocked " .. BuffBlockMenuStrings[02], 1, 1, 0.5);
+                    end
+                end
+            end
+            if BUFF_CONFIG[BB_PlayerName].DIVINESPIRIT then
+                if (string.find(texture, "DivineSpirit")) then
+                    CancelPlayerBuff(buffIndex);
+                    DEFAULT_CHAT_FRAME:AddMessage("Blocked " .. BuffBlockMenuStrings[03], 1, 1, 0.5);
+                end
+            end
+            if BUFF_CONFIG[BB_PlayerName].PRAYEROFSPIRIT then
+                if (string.find(texture, "PrayerofSpirit")) then
+                    CancelPlayerBuff(buffIndex);
+                    DEFAULT_CHAT_FRAME:AddMessage("Blocked " .. BuffBlockMenuStrings[04], 1, 1, 0.5);
+                end
+            end
+            if BUFF_CONFIG[BB_PlayerName].ARCANEINTELLECT then
+                if (string.find(texture, "MagicalSentry")) then
+                    CancelPlayerBuff(buffIndex);
+                    DEFAULT_CHAT_FRAME:AddMessage("Blocked " .. BuffBlockMenuStrings[05], 1, 1, 0.5);
+                end
+            end
+            if BUFF_CONFIG[BB_PlayerName].ARCANEBRILLIANCE then
+                if (string.find(texture, "ArcaneIntellect")) then
+                    CancelPlayerBuff(buffIndex);
+                    DEFAULT_CHAT_FRAME:AddMessage("Blocked " .. BuffBlockMenuStrings[06], 1, 1, 0.5);
+                end
+            end
+            if BUFF_CONFIG[BB_PlayerName].BLESSINGOFPROTECTION then
+                if (string.find(texture, "SealOfProtection")) then
+                    CancelPlayerBuff(buffIndex);
+                    DEFAULT_CHAT_FRAME:AddMessage("Blocked " .. BuffBlockMenuStrings[07], 1, 1, 0.5);
+                end
+            end
+        end
+
+        i = i + 1;
+    end    
 end
